@@ -17,7 +17,7 @@ module conway_cell(clk, rst, ena, state_0, state_d, state_q, neighbors);
 
 
 //
-always always_comb begin : next_state
+always_comb begin : next_state
 
   
 end

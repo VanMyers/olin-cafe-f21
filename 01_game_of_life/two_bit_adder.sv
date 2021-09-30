@@ -1,4 +1,4 @@
-module 2_bit_adder(a, b, Cout, sum);
+module two_bit_adder(a, b, Cout, sum);
 
 input wire [1:0] a;
 input wire [1:0] b;
