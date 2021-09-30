@@ -10,8 +10,17 @@ module conway_cell(clk, rst, ena, state_0, state_d, state_q, neighbors);
   output logic state_q;
 
   input wire [7:0] neighbors;
-  logic [3:0] living_neighbors;
+  logic [3:0] living_neighbors; // Lonely, 2, 3, overpopulated
 
+// Count living neighbors
+
+
+
+//
+always always_comb begin : next_state
+
+  
+end
 
 
 endmodule

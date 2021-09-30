@@ -12,6 +12,12 @@ DECODERS=decoder_1_to_2.sv decoder_2_to_4.sv decoder_3_to_8.sv
 test_decoders: test_decoders.sv $(DECODERS)
 	${IVERILOG} $^ -o test_decoders.bin && ${VVP} test_decoders.bin
 
+test_full_adder: test_full_adder.sv full_adder.sv
+	${IVERILOG} $^ -o test_full_adder.bin && ${VVP} test_full_adder.bin
+
+test_8_bit_adder: test_8_bit_adder.sv 8_bit_adder.sv
+	${IVERILOG} $^ -o test_8_bit_adder.bin && ${VVP} test_8_bit_adder.bin
+
 test_led_array_driver: test_led_array_driver.sv led_array_driver.sv $(DECODERS)
 	${IVERILOG} $^ -o test_led_array_driver.bin && ${VVP} test_led_array_driver.bin
 
