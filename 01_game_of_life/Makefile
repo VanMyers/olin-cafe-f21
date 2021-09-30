@@ -15,8 +15,8 @@ test_decoders: test_decoders.sv $(DECODERS)
 test_full_adder: test_full_adder.sv full_adder.sv
 	${IVERILOG} $^ -o test_full_adder.bin && ${VVP} test_full_adder.bin
 
-test_8_bit_adder: test_8_bit_adder.sv 8_bit_adder.sv
-	${IVERILOG} $^ -o test_8_bit_adder.bin && ${VVP} test_8_bit_adder.bin
+test_3_bit_adder: test_3_bit_adder.sv 3_bit_adder.sv
+	${IVERILOG} $^ -o test_3_bit_adder.bin && ${VVP} test_3_bit_adder.bin
 
 test_led_array_driver: test_led_array_driver.sv led_array_driver.sv $(DECODERS)
 	${IVERILOG} $^ -o test_led_array_driver.bin && ${VVP} test_led_array_driver.bin
