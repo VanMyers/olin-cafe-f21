@@ -19,7 +19,7 @@ Based on the [Luckylight](https://cdn-shop.adafruit.com/datasheets/454datasheet.
 display modules, available from [adafruit](https://www.adafruit.com/product/454)
 
 */
-`define DISABLE_CONWAY // comment this out after you've implemented your conway_cell module.
+//`define DISABLE_CONWAY // comment this out after you've implemented your conway_cell module.
 module main(clk, buttons, leds, rgb
 `ifndef DISABLE_CONWAY
  , cols, rows
