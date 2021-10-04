@@ -1,4 +1,4 @@
-module bit_counter (in, num)
+module bit_counter (in, num);
 
 input wire [7:0] in;
 output logic [3:0] num;
@@ -18,6 +18,6 @@ two_bit_adder adder0(count0,count1,sum0[2],sum0[1:0]);
 two_bit_adder adder1(count2,count3,sum1[2],sum1[1:0]);
 
 // third layer produces final count
-three_bit_adder final(sum0,sum1,num[3],num[2:0]);
+three_bit_adder total(sum0,sum1,num[3],num[2:0]);
 
 endmodule
