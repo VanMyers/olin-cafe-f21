@@ -1,6 +1,6 @@
 `default_nettype none // Overrides default behaviour (in a good way)
 
-module led_array_driver(ena, x, cells, rows, colsm);
+module led_array_driver(ena, x, cells, rows, cols);
   // Module I/O and parameters
   parameter N=5; // Size of Conway Cell Grid.
   parameter ROWS=N;

@@ -22,13 +22,13 @@ test_three_bit_adder: test_three_bit_adder.sv three_bit_adder.sv full_adder.sv
 test_bit_counter: test_bit_counter.sv bit_counter.sv three_bit_adder.sv two_bit_adder.sv full_adder.sv
 	${IVERILOG} $^ -o test_bit_counter.bin && ${VVP} test_bit_counter.bin
 
-test_led_array_driver: test_led_array_driver.sv led_array_driver.sv $(DECODERS)
+test_led_array_driver: test_led_array_driver.sv led_array_driver.sv led_array_model.sv $(DECODERS)
 	${IVERILOG} $^ -o test_led_array_driver.bin && ${VVP} test_led_array_driver.bin
 
 test_conway_cell: test_conway_cell.sv conway_cell.sv $(COUNTER)
 	${IVERILOG} $^ -o test_conway_cell.bin &&	${VVP} test_conway_cell.bin
 
-test_main: test_main.sv main.sv conway_cell.sv led_array_driver.sv $(COUNTER) $(DECODERS)
+test_main: test_main.sv main.sv conway_cell.sv initial_conditions.sv led_array_driver.sv led_array_model.sv $(COUNTER) $(DECODERS)
 	${IVERILOG} $^ -o test_main.bin && ${VVP} test_main.bin
 
 main.bit: main.sv conway_cell.sv led_array_driver.sv $(DECODERS)
