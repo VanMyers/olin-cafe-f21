@@ -2,7 +2,7 @@
 
 module led_array_driver(ena, x, cells, rows, cols);
   // Module I/O and parameters
-  parameter N=5; // Size of Conway Cell Grid.
+  parameter N=8; // Size of Conway Cell Grid.
   parameter ROWS=N;
   parameter COLS=N;
 
@@ -26,8 +26,17 @@ module led_array_driver(ena, x, cells, rows, cols);
     end
   end
 
-  wire [N-1:0] x_decoded;
-  decoder_3_to_8 COL_DECODER(ena, x, x_decoded);
+  decoder_3_to_8 COL_DECODER(ena, x, cols);
+
+  generate
+   genvar i;
+    for(i = 0; i < N; i++) begin : driver_row
+    wire [N-1:0] cells_in_row;
+    // use the column as a bitmask
+      assign rows[i] = (~|(cells[(N*i)-1:N*(i-1)]&cols))&ena;
+    end
+  endgenerate
+
   
 endmodule
 
