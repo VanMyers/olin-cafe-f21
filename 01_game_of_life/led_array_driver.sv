@@ -33,7 +33,7 @@ module led_array_driver(ena, x, cells, rows, cols);
     for(i = 0; i < N; i++) begin : driver_row
     wire [N-1:0] cells_in_row;
     // use the column as a bitmask
-      assign rows[i] = (~|(cells[(N*i)-1:N*(i-1)]&cols))&ena;
+      assign rows[i] = (~|(cells[N*(i+1)-1:N*i]&cols))&ena;
     end
   endgenerate
 
