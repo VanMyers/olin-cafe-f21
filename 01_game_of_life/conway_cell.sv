@@ -24,7 +24,7 @@ always_comb begin
 end
 
 always_ff @(posedge clk) begin
-  state_q <= ena? (rst? state_0 : state_d) : state_q;
+  state_q <= rst? state_0 : (ena? state_d : state_q);
 end
 
 endmodule

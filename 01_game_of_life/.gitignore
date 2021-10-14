@@ -1,0 +1,7 @@
+*.jou
+*.log
+*.runs
+*.wdf
+*.vcd
+*.xml
+*.bit
