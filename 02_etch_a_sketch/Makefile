@@ -29,7 +29,7 @@ test_main: tests/test_main.sv main.sv $(SRCS)
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	${IVERILOG} $^ -o test_main.bin && ${VVP} test_main.bin
 
-test_rgb: tests/test_rgb.sv rgb.sv $(SRCS)
+test_debouncer: tests/test_debouncer.sv debouncer.sv register.sv counter.sv
 	@echo "This might take a while, we're testing a lot of clock cycles!"
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "!!!! This test can generate 100s of MB easily            !!!!"
