@@ -12,7 +12,7 @@ test_slt: test_slt.sv slt.sv addern.sv adder_1.sv
 
 # Call this to generate your submission zip file.
 submission:
-	zip submission.zip Makefile *.sv README.md diagram.png
+	zip submission.zip Makefile *.sv README.md diagram.png sketch_diagram.jpeg pulse_generator.png
 
 # Remove generated files
 clean:

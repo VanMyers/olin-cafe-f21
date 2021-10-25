@@ -13,7 +13,7 @@ SRCS=pulse_generator.sv pwm.sv triangle_generator.sv
 test_pulse_generator: tests/test_pulse_generator.sv pulse_generator.sv counter.sv register.sv
 	${IVERILOG} $^ -o test_pulse_generator.bin && ${VVP} test_pulse_generator.bin
 
-test_pwm: tests/test_pwm.sv pulse_generator.sv pwm.sv
+test_pwm: tests/test_pwm.sv pulse_generator.sv pwm.sv counter.sv register.sv
 	@echo "This might take a while, we're testing a lot of clock cycles!"
 	${IVERILOG} $^ -o test_pwm.bin && ${VVP} test_pwm.bin
 
