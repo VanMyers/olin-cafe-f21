@@ -5,10 +5,10 @@ parameter T = 4;
 input wire rst, button;
 output logic [2:0] out;
 
-logic [T-2:0] counter;
 
-counter #(.N(N)) count(.clk(clk),.rst(rst_cnt),.ena(ena_cnt),.out(counter));
+debounce #(.BOUNCE_TICKS(T)) clean(
+  .clk(clk), .rst(rst), .bouncy_in(), .debounced_out())
 
 always_comb begin : state_logic
-    count_done = &(counter);
+  count_done = &(counter);
 end
