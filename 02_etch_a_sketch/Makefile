@@ -5,7 +5,7 @@ VVP=vvp
 VIVADO=vivado -mode batch -source
 
 # Add any new source files needed for the final bitstream here
-SRCS=pulse_generator.sv pwm.sv triangle_generator.sv 
+SRCS=pulse_generator.sv pwm.sv triangle_generator.sv register.sv counter.sv
 
 # Look up .PHONY rules for Makefiles
 .PHONY: clean submission remove_solutions
@@ -22,6 +22,14 @@ test_triangle_generator: tests/test_triangle_generator.sv triangle_generator.sv 
 
 
 test_main: tests/test_main.sv main.sv $(SRCS)
+	@echo "This might take a while, we're testing a lot of clock cycles!"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "!!!! This test can generate 100s of MB easily            !!!!"
+	@echo "!!!! be careful if you are low on disk space!            !!!!"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	${IVERILOG} $^ -o test_main.bin && ${VVP} test_main.bin
+
+test_rgb: tests/test_rgb.sv rgb.sv $(SRCS)
 	@echo "This might take a while, we're testing a lot of clock cycles!"
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "!!!! This test can generate 100s of MB easily            !!!!"
