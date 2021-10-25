@@ -17,7 +17,7 @@ test_pwm: tests/test_pwm.sv pulse_generator.sv pwm.sv
 	@echo "This might take a while, we're testing a lot of clock cycles!"
 	${IVERILOG} $^ -o test_pwm.bin && ${VVP} test_pwm.bin
 
-test_triangle_generator: tests/test_triangle_generator.sv triangle_generator.sv
+test_triangle_generator: tests/test_triangle_generator.sv triangle_generator.sv register.sv
 	${IVERILOG} $^ -o test_triangle_generator.bin && ${VVP} test_triangle_generator.bin
 
 
