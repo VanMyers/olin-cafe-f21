@@ -23,13 +23,14 @@ logic [N-1:0] counter;
 // You can use behavioural combinational logic, but try to keep your sequential
 //   and combinational blocks as separate as possible.
 
-counter #(.N(N)) count(.clk(step),.rst(rst),.ena(ena),.out(counter));
+counter #(.N(N)) count(.clk(clk),.rst(rst),.ena(step),.out(counter));
 
-logic slt, edgeCase;
+logic slt, edgeCase, high;
 always_comb begin : highOrLow
   slt = counter < duty;
   edgeCase = duty == 2**N-1;
-  out = ena & edgeCase;
+  high = edgeCase | slt;
+  out = ena & high;
 end
 
 endmodule
