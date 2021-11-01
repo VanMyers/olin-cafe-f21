@@ -19,6 +19,7 @@ always_ff @(posedge clk) begin : fsm_logic
   if (rst) begin
     state <= RED;
   end else begin
+    if(debounced_out) begin
     case(state)
       RED : begin
         state <= GREEN;
@@ -31,6 +32,7 @@ always_ff @(posedge clk) begin : fsm_logic
       end
       default : state <= RED;
     endcase
+    end
   end
 end
 
