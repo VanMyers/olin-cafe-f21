@@ -20,7 +20,7 @@ initial begin
   rst = 0;
 
   for(int i = 0; i < 10; i = i + 1) begin
-    delay = $random;
+    delay = $random + 1;
     repeat (delay) @(negedge clk);
     in = ~in; // toggle input
   end
