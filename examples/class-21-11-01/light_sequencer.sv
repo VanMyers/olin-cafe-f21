@@ -32,6 +32,7 @@ always_ff @(posedge clk) begin : fsm_logic
   if(rst) begin
     state <= state.first; // picks first thing in the enum
   end else begin
+    if(positive_edge) begin
     case (state)
       S_RED : begin
         state <= S_GREEN;
@@ -39,8 +40,12 @@ always_ff @(posedge clk) begin : fsm_logic
       S_GREEN : begin
         state <= S_BLUE;
       end
+      S_BLUE : begin
+        state <= S_RED;
+      end
       default: state <= S_ERROR;
     endcase
+    end
   end
 end
 
