@@ -29,13 +29,22 @@ test_main: tests/test_main.sv main.sv $(SRCS)
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	${IVERILOG} $^ -o test_main.bin && ${VVP} test_main.bin
 
+
 test_debouncer: tests/test_debouncer.sv debouncer.sv register.sv counter.sv
 	@echo "This might take a while, we're testing a lot of clock cycles!"
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 	@echo "!!!! This test can generate 100s of MB easily            !!!!"
 	@echo "!!!! be careful if you are low on disk space!            !!!!"
 	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-	${IVERILOG} $^ -o test_main.bin && ${VVP} test_main.bin
+	${IVERILOG} $^ -o test_debouncer.bin && ${VVP} test_debouncer.bin
+
+test_rgb: tests/test_rgb.sv rgb.sv $(SRCS)
+	@echo "This might take a while, we're testing a lot of clock cycles!"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	@echo "!!!! This test can generate 100s of MB easily            !!!!"
+	@echo "!!!! be careful if you are low on disk space!            !!!!"
+	@echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	${IVERILOG} $^ -o test_rgb.bin && ${VVP} test_rgb.bin
 
 main.bit: main.sv $(SRCS)
 	@echo "########################################"
