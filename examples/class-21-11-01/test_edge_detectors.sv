@@ -16,6 +16,9 @@ initial begin
   $dumpvars(0, UUT_MEALY);
   $dumpvars(0, UUT_MOORE);
 
+  repeat (2) @(negedge clk);
+  rst = 0;
+
   for(int i = 0; i < 10; i = i + 1) begin
     delay = $random;
     repeat (delay) @(negedge clk);
