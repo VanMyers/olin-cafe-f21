@@ -7,10 +7,10 @@ VVP_POST_ARGS=-fst
 # Look up .PHONY rules for Makefiles
 .PHONY: clean submission
 
-SRCS=mux4.sv mux8.sv mux16.sv mux32.sv
+SRCS=mux4.sv mux8.sv mux16.sv mux32.sv muxn.sv
 
 test_sll : test_sll.sv shift_left_logical.sv $(SRCS)
-	${IVERILOG} $^ -o test_sll.bin && ${VVP} test_sll.bin -fst
+	${IVERILOG} $^ -o test_sll.bin && ${VVP} test_sll.bin
 waves_sll : test_sll
 	gtkwave sll.fst
 
@@ -25,7 +25,7 @@ waves_sra : test_sra
 	gtkwave sra.fst
 
 test_serial: test_parallel_to_serial_converter.sv parallel_to_serial_converter.sv
-	${IVERILOG} $^ -o test_serial.bin && ${VVP} test_serial.bin -fst
+	${IVERILOG} $^ -o test_serial.bin && ${VVP} test_serial.bin
 waves_serial: test_serial
 	gtkwave -a parallel_to_serial_converter.gtkw parallel_to_serial_converter.fst
 
@@ -35,4 +35,4 @@ clean:
 
 # Call this to generate your submission zip file.
 submission:
-	zip submission.zip Makefile *.sv *.pdf
+	zip submission.zip Makefile *.sv *.pdf sll.jpeg
