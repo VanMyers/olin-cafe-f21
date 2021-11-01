@@ -10,7 +10,7 @@ VVP_POST_ARGS=-fst
 SRCS=mux4.sv mux8.sv mux16.sv mux32.sv muxn.sv
 
 test_sll : test_sll.sv shift_left_logical.sv $(SRCS)
-	${IVERILOG} $^ -o test_sll.bin && ${VVP} test_sll.bin
+	${IVERILOG} $^ -o test_sll.bin && ${VVP} test_sll.bin -fst
 waves_sll : test_sll
 	gtkwave sll.fst
 

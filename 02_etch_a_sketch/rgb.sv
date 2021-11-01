@@ -5,9 +5,9 @@ input wire clk, rst, button;
 output logic [2:0] out;
 
 enum logic [2:0] {
-  RED = 3'b100,
-  GREEN= 3'b010,
-  BLUE = 3'b001
+  RED = 3'b011,
+  GREEN= 3'b101,
+  BLUE = 3'b110
 } state;
 
 wire debounced_out;
