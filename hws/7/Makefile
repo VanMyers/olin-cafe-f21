@@ -6,28 +6,20 @@
 # -g2012 selects the 2012 version of iVerilog
 IVERILOG=iverilog -Wall -Wno-sensitivity-entire-vector -Wno-sensitivity-entire-array -g2012 -y ./ -I ./
 VVP=vvp
-VVP_POST_ARGS=-fst
+VVP_POST=-fst
 
 # Add your source sv files here! Is the fact that I populated this with muxes should be  *STRONG HINT*. 
-SRCS=mux4.sv mux8.sv mux16.sv mux32.sv
+SRCS=mux4.sv mux8.sv mux16.sv mux32.sv \
+	shift_left_logical.sv shift_right_logical.sv shift_right_arithmetic.sv \
+	adder_1.sv adder_n.sv
 # Look up .PHONY rules for Makefiles
 .PHONY: clean submission
 
-SRCS=mux4.sv mux8.sv mux16.sv mux32.sv muxn.sv
+test_alu: test_alu.sv alu.sv alu_types.sv alu_behavioural.sv ${SRCS}
+	${IVERILOG} $^ -o test_alu.bin && ${VVP} test_alu.bin ${VVP_POST}
 
-waves_sra: test_sra
-		gtkwave sra.fst &
-
-test_parallel_to_serial_converter: test_parallel_to_serial_converter.sv parallel_to_serial_converter.sv
-	${IVERILOG} $^ -o test_parallel_to_serial_converter.bin && ${VVP} test_parallel_to_serial_converter.bin ${VVP_POST_ARGS}
-
-waves_parallel_to_serial_converter: test_parallel_to_serial_converter
-		gtkwave parallel_to_serial_converter.fst --save=parallel_to_serial_converter.gtkw &
-
-test_serial: test_parallel_to_serial_converter.sv parallel_to_serial_converter.sv
-	${IVERILOG} $^ -o test_serial.bin && ${VVP} test_serial.bin
-waves_serial: test_serial
-	gtkwave -a parallel_to_serial_converter.gtkw parallel_to_serial_converter.fst
+waves_alu: test_alu
+		gtkwave alu.fst &
 
 # Call this to clean up all your generated files
 clean:
@@ -35,4 +27,4 @@ clean:
 
 # Call this to generate your submission zip file.
 submission:
-	zip submission.zip Makefile *.sv *.pdf sll.jpeg
+	zip submission.zip Makefile *.sv *.pdf

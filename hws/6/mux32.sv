@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 `default_nettype none
 module mux32(sel, inputs, out);
 input wire [4:0] sel;
