@@ -1,4 +1,4 @@
-`include "spi_types.sv"
+~`include "spi_types.sv"
 
 module spi_controller(
   clk, rst, sclk, csb, mosi, miso,

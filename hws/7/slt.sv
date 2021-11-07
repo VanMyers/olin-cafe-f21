@@ -1,14 +1,22 @@
-module slt(a, b, out);
+module slt(a, b, comp);
+
 parameter N = 32;
-input wire signed [N-1:0] a, b;
-output logic out;
 
-// Using only *structural* combinational logic, make a module that computes if a is less than b!
-// Note: this assumes that the two inputs are signed: aka should be interpreted as two's complement.
+input wire [N-1:0] a, b;
+output logic comp;
 
-// Copy any other modules you use into this folder and update the Makefile accordingly.
 
+logic [N-1:0] sum;
+adder_n #(.N(N)) subtractor(.a(a), .b(~b), .c_in(1), .sum(sum), .c_out());
+
+// we only need to check the difference if signs are the same
+logic neg_pos;
+logic same_sign;
+
+always_comb begin
+same_sign = a[N-1] ~^ b[N-1];
+neg_pos = a[N-1]&~b[N-1];
+comp = same_sign ? sum[N-1] : neg_pos;
+end
 
 endmodule
-
-
