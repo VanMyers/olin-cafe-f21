@@ -1,0 +1,6 @@
+*.bit
+*.checkpoint
+*.vcd
+*.log
+*.xml
+*.html
