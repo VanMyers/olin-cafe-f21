@@ -93,8 +93,24 @@ block_ram #(.W(VRAM_W), .L(VRAM_L)) VRAM(
   .wr_ena(vram_wr_ena), .wr_addr(vram_wr_addr), .wr_data(vram_wr_data)
 );
 
+logic [$clog2(VRAM_L)-1:0] timer;
+logic clr;
 // Put appropriate RAM clearing logic here!
-
+always_ff @(posedge clk) begin : ram_clr
+  if (rst) begin
+    clr <= 1'b1;
+    // I could do without reseting timer but this guarantees no off by one.
+    timer <= {$clog2(VRAM_L){1'b0}};
+    vram_wr_data <= WHITE;
+  end
+  if (clr) begin
+    vram_wr_addr <= timer;
+    timer <= timer + 1;
+  end
+  if (&(timer)) begin
+    clr <= 1'b0;
+  end
+end
 
 assign backlight = 1;
 ili9341_display_controller ILI9341(

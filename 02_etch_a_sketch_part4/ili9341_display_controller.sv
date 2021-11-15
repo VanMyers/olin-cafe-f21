@@ -146,6 +146,7 @@ always_comb begin  : draw_cursor_logic
     pixel_color = WHITE;
   end else begin
     // Have this draw from memory using rd_addr and rd_data
+    vram_rd_addr = touch.y + (touch.x * DISPLAY_HEIGHT);
   end
 end
 
