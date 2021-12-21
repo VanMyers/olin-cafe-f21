@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Tue Dec 21 20:51:13 2021
+[*]
+[dumpfile] "/home/van/olin/comparch/olin-cafe-f21/vmyers_final/delta_sigma.vcd"
+[dumpfile_mtime] "Mon Dec  6 23:35:59 2021"
+[dumpfile_size] 475570
+[savefile] "/home/van/olin/comparch/olin-cafe-f21/vmyers_final/triangle_wave_error.gtkw"
+[timestart] 0
+[size] 1848 1016
+[pos] -39 -39
+*-23.000000 43620000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] test_delta_sigma.
+[treeopen] test_delta_sigma.UUT.
+[sst_width] 233
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 289
+@28
+test_delta_sigma.UUT.clk
+@8022
+test_delta_sigma.UUT.in[7:0]
+@20000
+-
+-
+@8022
+test_delta_sigma.UUT.error_d[7:0]
+@20000
+-
+-
+@28
+test_delta_sigma.UUT.out
+[pattern_trace] 1
+[pattern_trace] 0
